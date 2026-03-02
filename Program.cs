@@ -1,5 +1,5 @@
 ﻿Wizard wizardA = new Wizard("Zilong", 50);
-Wizard wizardB = new Wizard("Argus",50);
+Wizard wizardB = new Wizard("Argus", 50);
 
 Console.WriteLine("Permainan di mulai...\n");
 Console.WriteLine("Statistik Awal");
@@ -7,8 +7,9 @@ wizardA.showstats();
 wizardB.showstats();
 
 wizardA.Attack(wizardB);
-wizardB.Attack(wizardA);
 wizardA.Attack(wizardB);
+wizardA.Attack(wizardB);
+wizardB.heal();
 
 Console.WriteLine("Permainan selesai...");
 Console.WriteLine("Statistik akhir");
@@ -17,11 +18,10 @@ wizardB.showstats();
 
 if (wizardA.energy > wizardB.energy)
 {
-    Console.WriteLine("Zilong pemenangnya");
+    Console.WriteLine("Victory,Zilong pemenangnya");
 }
 else
 {
- Console.WriteLine("Victory");
     return;
 }
 public class Wizard
@@ -32,7 +32,7 @@ public class Wizard
     public int damage;
 
     //constructor
-    public Wizard(string name,int damage)
+    public Wizard(string name, int damage)
     {
         Name = name;
         energy = 100;
@@ -52,4 +52,32 @@ public class Wizard
         Console.WriteLine($" {Name} menyerang {enemyobj}");
         Console.WriteLine($"Sisa energi {enemyobj.Name}: {energy}");
     }
+
+
+    public void heal()
+    {
+        if (energy >= 100)
+        {
+            Console.WriteLine("Gagal melakukan heal.Energi sudah mencapai maksimum");
+        }
+        else
+        {
+            if (energy > 95)
+            {
+                energy = 100;
+            }
+            else
+            {
+                energy += 5;
+            }
+            Console.WriteLine($"{Name} berhasil melakukan heal. Energi meningkat menjadi {energy}");
+            
+        }
+        
+    }
+    
+
 }
+
+
+
